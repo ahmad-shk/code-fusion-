@@ -13,80 +13,80 @@ import { Mail, Phone, MapPin, Clock, Send, CheckCircle, XCircle } from "lucide-r
 import { useToast } from "@/hooks/use-toast"
 
 export function ContactSection() {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  //   company: "",
-  //   projectType: "",
-  //   budget: "",
-  //   timeline: "",
-  //   message: "",
-  // })
-  // const [isSubmitting, setIsSubmitting] = useState(false)
-  // const { toast } = useToast()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    projectType: "",
+    budget: "",
+    timeline: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { toast } = useToast()
 
-  // const handleInputChange = (field: string, value: string) => {
-  //   setFormData((prev) => ({ ...prev, [field]: value }))
-  // }
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   setIsSubmitting(true)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
 
-  //   try {
-  //     const response = await fetch("/api/contact", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     })
+    // try {
+    //   const response = await fetch("/api/contact", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   })
 
-  //     if (!response.ok) {
-  //       throw new Error("Failed to send message")
-  //     }
+    //   if (!response.ok) {
+    //     throw new Error("Failed to send message")
+    //   }
 
-  //     const result = await response.json()
+    //   const result = await response.json()
 
-  //     toast({
-  //       title: (
-  //         <div className="flex items-center gap-2">
-  //           <CheckCircle className="h-5 w-5 text-emerald-500" />
-  //           <span className="text-emerald-500 font-semibold">Message Sent Successfully!</span>
-  //         </div>
-  //       ),
-  //       description: "Thank you for your inquiry. Our team will respond within 24 hours.",
-  //       className: "border-emerald-500/20 bg-emerald-50/90 dark:bg-emerald-950/90 backdrop-blur-sm",
-  //     })
+    //   toast({
+    //     title: (
+    //       <div className="flex items-center gap-2">
+    //         <CheckCircle className="h-5 w-5 text-emerald-500" />
+    //         <span className="text-emerald-500 font-semibold">Message Sent Successfully!</span>
+    //       </div>
+    //     ),
+    //     description: "Thank you for your inquiry. Our team will respond within 24 hours.",
+    //     className: "border-emerald-500/20 bg-emerald-50/90 dark:bg-emerald-950/90 backdrop-blur-sm",
+    //   })
 
-  //     // Reset form
-  //     setFormData({a
-  //       name: "",
-  //       email: "",
-  //       phone: "",
-  //       company: "",
-  //       projectType: "",
-  //       budget: "",
-  //       timeline: "",
-  //       message: "",
-  //     })
-  //   } catch (error) {
-  //     console.error("Contact form error:", error)
-  //     toast({
-  //       title: (
-  //         <div className="flex items-center gap-2">
-  //           <XCircle className="h-5 w-5 text-red-500" />
-  //           <span className="text-red-500 font-semibold">Message Failed to Send</span>
-  //         </div>
-  //       ),
-  //       description: "There was an error sending your message. Please try again or contact us directly.",
-  //       className: "border-red-500/20 bg-red-50/90 dark:bg-red-950/90 backdrop-blur-sm",
-  //     })
-  //   } finally {
-  //     setIsSubmitting(false)
-  //   }
-  // }
+    //   // Reset form
+    //   setFormData({a
+    //     name: "",
+    //     email: "",
+    //     phone: "",
+    //     company: "",
+    //     projectType: "",
+    //     budget: "",
+    //     timeline: "",
+    //     message: "",
+    //   })
+    // } catch (error) {
+    //   console.error("Contact form error:", error)
+    //   toast({
+    //     title: (
+    //       <div className="flex items-center gap-2">
+    //         <XCircle className="h-5 w-5 text-red-500" />
+    //         <span className="text-red-500 font-semibold">Message Failed to Send</span>
+    //       </div>
+    //     ),
+    //     description: "There was an error sending your message. Please try again or contact us directly.",
+    //     className: "border-red-500/20 bg-red-50/90 dark:bg-red-950/90 backdrop-blur-sm",
+    //   })
+    // } finally {
+    //   setIsSubmitting(false)
+    // }
+  }
 
   return (
     <section
