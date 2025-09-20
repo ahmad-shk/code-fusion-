@@ -18,6 +18,17 @@ const teamMembers = [
     email: "bilal@codefusion.com",
   },
   {
+    id: 5,
+    name: "M Adeeb",
+    role: "DevOps Engineer",
+    image: "/Adeebpic.jpeg",
+    bio: "Infrastructure specialist ensuring smooth deployments and maintaining high-performance production systems.",
+    skills: ["AWS", "Docker", "CI/CD", "Monitoring"],
+    linkedin: "#",
+    github: "#",
+    email: "adeeb@codefusion.com",
+  },
+  {
     id: 2,
     name: "M Ahmad",
     role: "Mobile App Developer",
@@ -49,18 +60,7 @@ const teamMembers = [
     linkedin: "#",
     github: "#",
     email: "umar@codefusion.com",
-  },
-  {
-    id: 5,
-    name: "M Adeeb",
-    role: "DevOps Engineer",
-    image: "/Adeebpic.jpeg",
-    bio: "Infrastructure specialist ensuring smooth deployments and maintaining high-performance production systems.",
-    skills: ["AWS", "Docker", "CI/CD", "Monitoring"],
-    linkedin: "#",
-    github: "#",
-    email: "adeeb@codefusion.com",
-  },
+  }
 ]
 
 export function TeamSection() {
