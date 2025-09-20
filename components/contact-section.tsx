@@ -35,17 +35,19 @@ export function ContactSection() {
     setIsSubmitting(true)
 
     try {
-      // Simulate form submission with random success/failure
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // 80% success rate for demo
-          if (Math.random() > 0.2) {
-            resolve(true)
-          } else {
-            reject(new Error("Network error"))
-          }
-        }, 2000)
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
+
+      if (!response.ok) {
+        throw new Error("Failed to send message")
+      }
+
+      const result = await response.json()
 
       toast({
         title: (
@@ -59,7 +61,7 @@ export function ContactSection() {
       })
 
       // Reset form
-      setFormData({
+      setFormData({a
         name: "",
         email: "",
         phone: "",
@@ -70,6 +72,7 @@ export function ContactSection() {
         message: "",
       })
     } catch (error) {
+      console.error("Contact form error:", error)
       toast({
         title: (
           <div className="flex items-center gap-2">

@@ -30,11 +30,11 @@ export function Navigation() {
             <div className="p-2 sm:p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 animate-pulse-glow border border-cyan-400/30">
               <Code className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400" />
             </div>
-            <div className="hidden xs:block">
-              <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <div>
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 Code Fusion
               </h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">Professional Development</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Professional Development</p>
             </div>
           </Link>
 
