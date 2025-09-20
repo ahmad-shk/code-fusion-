@@ -32,7 +32,7 @@ const teamMembers = [
     id: 2,
     name: "M Ahmad",
     role: "Mobile App Developer",
-    image: "/Ahmadpic.JPG",
+    image: "/Ahmadpic.png",
     bio: "Specialized in React Native and Flutter development, creating beautiful cross-platform mobile applications.",
     skills: ["React Native", "Flutter", "iOS", "Android"],
     linkedin: "#",
