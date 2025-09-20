@@ -21,7 +21,7 @@ const teamMembers = [
     id: 5,
     name: "M Adeeb",
     role: "DevOps Engineer",
-    image: "/Adeebpic.jpeg",
+    image: "/Adeebpic.JPG",
     bio: "Infrastructure specialist ensuring smooth deployments and maintaining high-performance production systems.",
     skills: ["AWS", "Docker", "CI/CD", "Monitoring"],
     linkedin: "#",
