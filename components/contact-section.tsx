@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import axios from "axios";
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,11 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, XCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, XCircle, Axis3DIcon } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -30,62 +30,46 @@ export function ContactSection() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // setIsSubmitting(true)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault() // ✅ Prevent double submit
+    if (isSubmitting) return // ✅ Prevent multiple clicks
+    setIsSubmitting(true)
 
-    // try {
-    //   const response = await fetch("/api/contact", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   })
+    try {
+      const response = await axios.post(
+        "https://code-fusion-backend-seven.vercel.app/api/contact",
+        formData
+      )
 
-    //   if (!response.ok) {
-    //     throw new Error("Failed to send message")
-    //   }
+      if (response.data.success) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "Thank you for your inquiry. Our team will respond within 24 hours.",
+        })
 
-    //   const result = await response.json()
-
-    //   toast({
-    //     title: (
-    //       <div className="flex items-center gap-2">
-    //         <CheckCircle className="h-5 w-5 text-emerald-500" />
-    //         <span className="text-emerald-500 font-semibold">Message Sent Successfully!</span>
-    //       </div>
-    //     ),
-    //     description: "Thank you for your inquiry. Our team will respond within 24 hours.",
-    //     className: "border-emerald-500/20 bg-emerald-50/90 dark:bg-emerald-950/90 backdrop-blur-sm",
-    //   })
-
-    //   // Reset form
-    //   setFormData({a
-    //     name: "",
-    //     email: "",
-    //     phone: "",
-    //     company: "",
-    //     projectType: "",
-    //     budget: "",
-    //     timeline: "",
-    //     message: "",
-    //   })
-    // } catch (error) {
-    //   console.error("Contact form error:", error)
-    //   toast({
-    //     title: (
-    //       <div className="flex items-center gap-2">
-    //         <XCircle className="h-5 w-5 text-red-500" />
-    //         <span className="text-red-500 font-semibold">Message Failed to Send</span>
-    //       </div>
-    //     ),
-    //     description: "There was an error sending your message. Please try again or contact us directly.",
-    //     className: "border-red-500/20 bg-red-50/90 dark:bg-red-950/90 backdrop-blur-sm",
-    //   })
-    // } finally {
-    //   setIsSubmitting(false)
-    // }
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          projectType: "",
+          budget: "",
+          timeline: "",
+          message: "",
+        })
+      } else {
+        throw new Error("Failed to send message")
+      }
+    } catch (error) {
+      console.error("Contact form error:", error)
+      toast({
+        title: "Message Failed to Send",
+        description: "There was an error sending your message. Please try again or contact us directly.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
