@@ -12,7 +12,7 @@ export function Footer() {
               <div className="p-2 rounded-lg bg-primary/20 animate-pulse-glow">
                 <Code className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
                 IT Pro Team
               </h3>
             </div>

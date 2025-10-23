@@ -7,6 +7,8 @@ import { Suspense } from "react"
 import { Code } from "lucide-react"
 import Favicon from "../components/Favicon"
 import "./globals.css"
+import SeoClient from "@/components/SeoClient"
+
 
 // ✅ Global Metadata for SEO & OpenGraph
 export const metadata: Metadata = {
@@ -64,6 +66,7 @@ export default function RootLayout({
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col bg-[#0b0f19] text-white`}
       >
+        <SeoClient />
         {/* ✅ Dynamic glowing favicon */}
         <Favicon />
 
@@ -78,7 +81,7 @@ export default function RootLayout({
         </header>
 
         {/* ✅ Page Content */}
-        <main className="flex-grow">
+        <main className="grow">
           <Suspense fallback={null}>{children}</Suspense>
         </main>
 
