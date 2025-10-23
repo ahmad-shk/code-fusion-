@@ -15,7 +15,7 @@ const teamMembers = [
     skills: ["React", "Node.js", "AWS", "TypeScript"],
     linkedin: "#",
     github: "#",
-    email: "bilal@codefusion.com",
+    email: "bilal@codefusiongroup.com",
   },
   {
     id: 5,
@@ -26,7 +26,7 @@ const teamMembers = [
     skills: ["AWS", "Docker", "CI/CD", "Monitoring"],
     linkedin: "#",
     github: "#",
-    email: "adeeb@codefusion.com",
+    email: "adeeb@codefusiongroup.com",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const teamMembers = [
     skills: ["React Native", "Flutter", "iOS", "Android"],
     linkedin: "#",
     github: "#",
-    email: "ahmad@codefusion.com",
+    email: "ahmad@codefusiongroup.com",
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ const teamMembers = [
     skills: ["Python", "PostgreSQL", "Docker", "Kubernetes"],
     linkedin: "#",
     github: "#",
-    email: "muzamil@codefusion.com",
+    email: "muzamil@codefusiongroup.com",
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const teamMembers = [
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research"],
     linkedin: "#",
     github: "#",
-    email: "umar@codefusion.com",
+    email: "umar@codefusiongroup.com",
   }
 ]
 

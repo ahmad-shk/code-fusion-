@@ -107,8 +107,8 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-card-foreground mb-1 text-sm sm:text-base">Email</h4>
-                    <p className="text-muted-foreground text-sm break-all">contact@codefusion.com</p>
-                    <p className="text-muted-foreground text-sm break-all">info@codefusion.com</p>
+                    <p className="text-muted-foreground text-sm break-all">contact@codefusiongroup.com</p>
+                    <p className="text-muted-foreground text-sm break-all">info@codefusiongroup.com</p>
                   </div>
                 </div>
 
@@ -317,7 +317,7 @@ export function ContactSection() {
 
         <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-border/50 text-center">
           <p className="text-muted-foreground text-sm sm:text-base">
-            © 2024 Code Fusion. All rights reserved. | Professional IT Solutions for Your Business
+            © 2024 Code Fusion Group. All rights reserved. | Professional IT Solutions for Your Business
           </p>
         </div>
       </div>

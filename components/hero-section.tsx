@@ -42,7 +42,7 @@ export function HeroSection() {
         <div className="animate-fade-in-up">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse-glow">
-              Code Fusion
+              Code Fusion Group
             </span>{" "}
             - Professional{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse-glow">

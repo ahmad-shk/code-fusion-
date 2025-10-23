@@ -32,7 +32,7 @@ export function Navigation() {
             </div>
             <div>
               <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Code Fusion
+                Code Fusion Group
               </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">Professional Development</p>
             </div>
