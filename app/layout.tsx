@@ -1,3 +1,4 @@
+import Script from "next/script"
 import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
@@ -9,8 +10,7 @@ import Favicon from "../components/Favicon"
 import "./globals.css"
 import SeoClient from "@/components/SeoClient"
 
-
-// ✅ Global Metadata for SEO & OpenGraph
+// 🌐 Global Metadata for SEO, OG, and Indexing
 export const metadata: Metadata = {
   title: "Code Fusion Group | Professional IT Team - Web & App Development",
   description:
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Code Fusion Group",
     images: [
       {
-        url: "https://www.codefusiongroup.site/og-image.png", // Add an OG image in /public
+        url: "https://www.codefusiongroup.site/og-image.png",
         width: 1200,
         height: 630,
         alt: "Code Fusion Group Banner",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico", // fallback for browsers
+    icon: "/favicon.ico",
   },
   robots: {
     index: true,
@@ -63,11 +63,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        {/* ✅ Structured Data (JSON-LD) for Google */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Code Fusion Group",
+              url: "https://www.codefusiongroup.site",
+              logo: "https://www.codefusiongroup.site/logo.png",
+              sameAs: [
+                "https://www.facebook.com/codefusiongroup",
+                "https://www.instagram.com/codefusiongroup",
+                "https://www.linkedin.com/company/codefusiongroup",
+              ],
+            }),
+          }}
+        />
+      </head>
+
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col bg-[#0b0f19] text-white`}
       >
+        {/* ✅ SEO Client (Dynamic tags & title updates) */}
         <SeoClient />
-        {/* ✅ Dynamic glowing favicon */}
+
+        {/* ✅ Glowing favicon */}
         <Favicon />
 
         {/* ✅ Header */}
@@ -90,7 +115,7 @@ export default function RootLayout({
           © {new Date().getFullYear()} Code Fusion Group — All Rights Reserved.
         </footer>
 
-        {/* ✅ Analytics */}
+        {/* ✅ Analytics (Vercel) */}
         <Analytics />
       </body>
     </html>
