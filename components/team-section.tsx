@@ -87,7 +87,7 @@ export function TeamSection() {
                   alt={member.name}
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                {/* <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex gap-3">
                     <Button size="sm" variant="secondary" className="bg-background text-foreground hover:bg-muted">
                       <Linkedin className="h-4 w-4" />
@@ -99,7 +99,7 @@ export function TeamSection() {
                       <Mail className="h-4 w-4" />
                     </Button>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <CardContent className="p-6">
@@ -121,7 +121,7 @@ export function TeamSection() {
           ))}
         </div>
 
-        {/* Team Stats */}
+        {/* Team Stats
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div className="p-6 bg-card rounded-lg">
             <div className="text-3xl font-bold text-accent mb-2">50+</div>
@@ -139,7 +139,7 @@ export function TeamSection() {
             <div className="text-3xl font-bold text-accent mb-2">100%</div>
             <div className="text-muted-foreground">Client Satisfaction</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

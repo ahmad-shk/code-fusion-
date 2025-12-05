@@ -24,7 +24,7 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
     duration: "6 months",
-    team: "8 developers",
+    team: "5 developers",
     relatedProjects: [3, 5],
     features: [
       "Secure Payment Gateway Integration",
@@ -49,7 +49,7 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
     duration: "5 months",
-    team: "6 developers",
+    team: "5 developers",
     relatedProjects: [6],
     features: [
       "Electronic Health Records (EHR)",
@@ -99,7 +99,7 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
     duration: "5 months",
-    team: "7 developers",
+    team: "5 developers",
     relatedProjects: [],
     features: [
       "Point of Sale (POS) System",
@@ -124,7 +124,7 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
     duration: "7 months",
-    team: "9 developers",
+    team: "5 developers",
     relatedProjects: [1],
     features: [
       "Course Creation & Management",
@@ -149,7 +149,7 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
     duration: "4 months",
-    team: "4 developers",
+    team: "5 developers",
     relatedProjects: [2],
     features: [
       "Workout Logging & Tracking",

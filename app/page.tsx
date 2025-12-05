@@ -3,6 +3,7 @@ import { PortfolioSection } from "@/components/portfolio-section"
 import { TeamSection } from "@/components/team-section"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import StatsSection from "@/components/StatsSection"
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <PortfolioSection />
       <TeamSection />
+      <StatsSection />
       <Footer />
     </main>
   )

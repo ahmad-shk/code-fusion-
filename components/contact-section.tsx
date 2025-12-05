@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import axios from "axios";
+import axios from "axios"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,11 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, XCircle, Axis3DIcon } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export function ContactSection() {
- const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -36,10 +36,7 @@ export function ContactSection() {
     setIsSubmitting(true)
 
     try {
-      const response = await axios.post(
-        "https://code-fusion-backend-seven.vercel.app/api/contact",
-        formData
-      )
+      const response = await axios.post("https://code-fusion-backend-seven.vercel.app/api/contact", formData)
 
       if (response.data.success) {
         toast({
@@ -72,6 +69,20 @@ export function ContactSection() {
     }
   }
 
+  const handleEmailClick = (email: string) => {
+    window.location.href = `mailto:${email}`
+  }
+
+  const handlePhoneClick = (phone: string) => {
+    // Remove non-numeric characters and format for WhatsApp
+    const cleanPhone = phone.replace(/\D/g, "")
+    window.open(`https://wa.me/${cleanPhone}`, "_blank")
+  }
+
+  const handleLocationClick = () => {
+    window.open("https://www.google.com/maps/search/Code+Fusion+Group+Lahore+Pakistan", "_blank")
+  }
+
   return (
     <section
       id="contact"
@@ -88,9 +99,9 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
-          {/* Contact Information */}
-          <div className="xl:col-span-1 order-2 xl:order-1">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Contact Information - Left Side */}
+          <div className="lg:col-span-1">
             <Card className="bg-card/80 backdrop-blur-sm border-border/50 h-fit shadow-lg hover:shadow-xl transition-all duration-300">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg sm:text-xl text-card-foreground flex items-center gap-2">
@@ -107,8 +118,18 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-card-foreground mb-1 text-sm sm:text-base">Email</h4>
-                    <p className="text-muted-foreground text-sm break-all">contact@codefusiongroup.com</p>
-                    <p className="text-muted-foreground text-sm break-all">info@codefusiongroup.com</p>
+                    <p
+                      onClick={() => handleEmailClick("contact@codefusiongroup.com")}
+                      className="text-muted-foreground text-sm break-all cursor-pointer hover:text-cyan-400 transition-colors duration-200 hover:underline"
+                    >
+                      contact@codefusiongroup.com
+                    </p>
+                    <p
+                      onClick={() => handleEmailClick("info@codefusiongroup.com")}
+                      className="text-muted-foreground text-sm break-all cursor-pointer hover:text-cyan-400 transition-colors duration-200 hover:underline"
+                    >
+                      info@codefusiongroup.com
+                    </p>
                   </div>
                 </div>
 
@@ -118,19 +139,35 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-card-foreground mb-1 text-sm sm:text-base">Phone</h4>
-                    <p className="text-muted-foreground text-sm">+92 300 1234567</p>
-                    <p className="text-muted-foreground text-sm">+92 321 9876543</p>
+                    <p
+                      onClick={() => handlePhoneClick("+92 300 1234567")}
+                      className="text-muted-foreground text-sm cursor-pointer hover:text-purple-400 transition-colors duration-200 hover:underline"
+                    >
+                      +92 300 1234567
+                    </p>
+                    <p
+                      onClick={() => handlePhoneClick("+92 321 9876543")}
+                      className="text-muted-foreground text-sm cursor-pointer hover:text-purple-400 transition-colors duration-200 hover:underline"
+                    >
+                      +92 321 9876543
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-pink-500/10 to-pink-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-pink-400/20">
+                <div onClick={handleLocationClick} className="flex items-start gap-3 sm:gap-4 cursor-pointer group">
+                  <div className="w-10 h-10 bg-gradient-to-br from-pink-500/10 to-pink-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-pink-400/20 group-hover:border-pink-400/50 group-hover:bg-gradient-to-br group-hover:from-pink-500/20 group-hover:to-pink-500/30 transition-all duration-200">
                     <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-pink-400" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-card-foreground mb-1 text-sm sm:text-base">Location</h4>
-                    <p className="text-muted-foreground text-sm">Lahore, Pakistan</p>
-                    <p className="text-muted-foreground text-sm">Remote Services Available</p>
+                    <h4 className="font-semibold text-card-foreground mb-1 text-sm sm:text-base group-hover:text-pink-400 transition-colors duration-200">
+                      Location
+                    </h4>
+                    <p className="text-muted-foreground text-sm group-hover:text-pink-400 transition-colors duration-200">
+                      Lahore, Pakistan
+                    </p>
+                    <p className="text-muted-foreground text-sm group-hover:text-pink-400/80 transition-colors duration-200">
+                      Remote Services Available
+                    </p>
                   </div>
                 </div>
 
@@ -148,8 +185,8 @@ export function ContactSection() {
             </Card>
           </div>
 
-          {/* Contact Form */}
-          <div className="xl:col-span-2 order-1 xl:order-2">
+          {/* Contact Form - Right Side (spans 2 columns) */}
+          <div className="lg:col-span-2">
             <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-xl transition-all duration-300">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg sm:text-xl text-card-foreground flex items-center gap-2">
@@ -315,9 +352,34 @@ export function ContactSection() {
           </div>
         </div>
 
+        <div className="mt-12 sm:mt-16 pt-12 sm:pt-16">
+          <div className="mb-8 text-center">
+            <h3 className="text-xl sm:text-2xl font-bold text-card-foreground mb-2">Our Office Location</h3>
+            <p className="text-muted-foreground text-sm sm:text-base">Visit us at our Lahore office</p>
+          </div>
+
+          <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-lg overflow-hidden">
+            <CardContent className="p-0">
+              {/* Google Maps Embed */}
+              <div className="w-full h-96 sm:h-[500px]">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.5897280308606!2d74.34509999999999!3d31.5497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sCode%20Fusion%20Group!2sLahore%2C%20Pakistan!5e0!3m2!1sen!2s!4v1733421847851"
+                  allowFullScreen={true}
+                  aria-hidden="false"
+                  title="Code Fusion Group Office Location"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-border/50 text-center">
           <p className="text-muted-foreground text-sm sm:text-base">
-            © 2024 Code Fusion Group. All rights reserved. | Professional IT Solutions for Your Business
+            © 2022 Code Fusion Group. All rights reserved. | Professional IT Solutions for Your Business
           </p>
         </div>
       </div>
