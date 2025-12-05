@@ -205,10 +205,23 @@ export function PortfolioSection() {
               </CardContent>
             </Card>
           ))}
+         
         </div>
+         <div className="flex justify-center mt-16">
+            <Link href="/projects">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-600 
+                hover:from-cyan-600 hover:via-purple-700 hover:to-pink-700 text-white 
+                shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
+              >
+               See All Projects
+              </Button>
+            </Link>
+          </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <p className="text-muted-foreground mb-6">Ready to start your project?</p>
           <Link href="/contact">
             <Button
@@ -218,7 +231,7 @@ export function PortfolioSection() {
               Get Started Today
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   )
