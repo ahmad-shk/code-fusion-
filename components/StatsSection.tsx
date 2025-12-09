@@ -92,7 +92,7 @@ export default function StatsSection() {
               Our Achievements
             </span>
           </div>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black bg-gradient-to-r from-slate-900 via-blue-700 to-slate-900 dark:from-slate-50 dark:via-blue-400 dark:to-slate-50 bg-clip-text text-transparent mb-6 tracking-tight">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black bg-white -bg-gradient-to-r from-slate-900 via-blue-700 to-slate-900 dark:from-slate-50 dark:via-blue-400 dark:to-slate-50 bg-clip-text text-transparent mb-6 tracking-tight">
             Proven Track Record
           </h2>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
