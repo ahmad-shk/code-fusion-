@@ -9,10 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send, Check } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export function ContactSection() {
+  const [isSuccess, setIsSuccess] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,6 +40,7 @@ export function ContactSection() {
       const response = await axios.post("https://code-fusion-backend-seven.vercel.app/api/contact", formData)
 
       if (response.data.success) {
+        setIsSuccess(true)
         toast({
           title: "Message Sent Successfully!",
           description: "Thank you for your inquiry. Our team will respond within 24 hours.",
@@ -65,6 +67,7 @@ export function ContactSection() {
         description: "There was an error sending your message. Please try again or contact us directly.",
       })
     } finally {
+      setTimeout(() => setIsSuccess(false), 3000)
       setIsSubmitting(false)
     }
   }
@@ -88,6 +91,7 @@ export function ContactSection() {
       id="contact"
       className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-muted/30 to-background"
     >
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 text-balance">
@@ -338,6 +342,11 @@ export function ContactSection() {
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         Sending Message...
+                      </div>
+                    ) : isSuccess ? (
+                      <div className="flex items-center gap-2 text-white">
+                        <Check className="h-5 w-5 text-white" />
+                        Enquiry Sent Successfully!
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
