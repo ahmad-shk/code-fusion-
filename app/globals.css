@@ -424,3 +424,29 @@
     animation-iteration-count: 1 !important;
   }
 }
+/* Smooth infinite scroll animation */
+@keyframes scrollX {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Hide scrollbar for the section */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrolling-wrapper {
+  overflow-x: auto;
+  white-space: nowrap;
+  animation: scrollX 30s linear infinite;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

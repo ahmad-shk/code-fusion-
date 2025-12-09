@@ -82,24 +82,13 @@ export function TeamSection() {
               className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card border-border"
             >
               <div className="relative overflow-hidden">
-                <img
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex gap-3">
-                    <Button size="sm" variant="secondary" className="bg-background text-foreground hover:bg-muted">
-                      <Linkedin className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="secondary" className="bg-background text-foreground hover:bg-muted">
-                      <Github className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="secondary" className="bg-background text-foreground hover:bg-muted">
-                      <Mail className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div> */}
+                <div className="w-40 h-40 mx-auto overflow-hidden rounded-full">
+                  <img
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
 
               <CardContent className="p-6">
@@ -120,26 +109,6 @@ export function TeamSection() {
             </Card>
           ))}
         </div>
-
-        {/* Team Stats
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="p-6 bg-card rounded-lg">
-            <div className="text-3xl font-bold text-accent mb-2">50+</div>
-            <div className="text-muted-foreground">Projects Completed</div>
-          </div>
-          <div className="p-6 bg-card rounded-lg">
-            <div className="text-3xl font-bold text-accent mb-2">5</div>
-            <div className="text-muted-foreground">Team Members</div>
-          </div>
-          <div className="p-6 bg-card rounded-lg">
-            <div className="text-3xl font-bold text-accent mb-2">3+</div>
-            <div className="text-muted-foreground">Years Experience</div>
-          </div>
-          <div className="p-6 bg-card rounded-lg">
-            <div className="text-3xl font-bold text-accent mb-2">100%</div>
-            <div className="text-muted-foreground">Client Satisfaction</div>
-          </div>
-        </div> */}
       </div>
     </section>
   )

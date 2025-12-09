@@ -4,6 +4,7 @@ import { TeamSection } from "@/components/team-section"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import StatsSection from "@/components/StatsSection"
+import { ReviewSection } from "@/components/reviewSection"
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <PortfolioSection />
       <TeamSection />
       <StatsSection />
+      <ReviewSection />
       <Footer />
     </main>
   )
