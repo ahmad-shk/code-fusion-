@@ -30,7 +30,7 @@ const teamMembers = [
   },
   {
     id: 4,
-    name: "M Muzamil",
+    name: "M Umair",
     role: "Frontend UI Developer",
     image: "/umair-ui.png",
     bio: "Frontend developer focused on building modern, responsive user interfaces using React.js and Next.js.",
@@ -38,7 +38,7 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "M Umar",
+    name: "M Ehsan",
     role: "UI/UX & Figma Designer",
     image: "/ehsanPicture.png",
     bio: "Creative UI/UX designer specializing in Figma designs, user experience, and clean modern interfaces.",
