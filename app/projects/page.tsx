@@ -18,7 +18,7 @@ const projects = [
     fullDescription:
       "A fully-featured e-commerce platform built for scalability and user experience. Features include secure payment processing through Stripe, multi-vendor support, inventory tracking, customer reviews, order management, and a powerful admin dashboard for managing products and sales.",
     image: "/project/homeEcom.png",
-    images: ["/project/homeEcom.png", "/project/ProductEcom.png", "/project/cartEcom.png", "/project/adminDashBoardEcom.png"],
+    images: ["/project/homeEcom.png", "/project/productEcom.png", "/project/cartEcom.png", "/project/adminDashBoardEcom.png"],
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     category: "Web Development",
     duration: "2 months",
