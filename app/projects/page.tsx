@@ -17,15 +17,12 @@ const projects = [
       "Modern online shopping platform with payment integration, inventory management, and admin dashboard. This comprehensive solution includes real-time product updates, customer reviews, and advanced analytics.",
     fullDescription:
       "A fully-featured e-commerce platform built for scalability and user experience. Features include secure payment processing through Stripe, multi-vendor support, inventory tracking, customer reviews, order management, and a powerful admin dashboard for managing products and sales.",
-    image: "/modern-ecommerce-interface.png",
-    images: ["/modern-ecommerce-interface.png", "/ecommerce-checkout.jpg", "/product-gallery.jpg"],
+    image: "/project/homeEcom.png",
+    images: ["/project/homeEcom.png", "/project/ProductEcom.png", "/project/cartEcom.png", "/project/adminDashBoardEcom.png"],
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     category: "Web Development",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "6 months",
+    duration: "2 months",
     team: "5 developers",
-    relatedProjects: [3, 5],
     features: [
       "Secure Payment Gateway Integration",
       "Real-time Inventory Management",
@@ -42,8 +39,8 @@ const projects = [
       "Comprehensive healthcare management system for clinics with patient records and appointment scheduling. Integrated with telemedicine capabilities and prescription management.",
     fullDescription:
       "A robust healthcare solution designed for medical professionals and patients. Features include electronic health records (EHR), appointment scheduling, prescription management, telemedicine consultation, patient history tracking, and HIPAA-compliant data security.",
-    image: "/healthcare-management-dashboard.png",
-    images: ["/healthcare-management-dashboard.png", "/patient-records.jpg", "/appointment-scheduler.jpg"],
+    image: "/project/dashboardHealth.png",
+    images: ["/project/dashboardHealth.png", "/project/patientRecordHealth.png", "/project/appointmentSchedulerHealth.png", "/project/telemedicineAppHealth.png"],
     technologies: ["React Native", "Firebase", "TypeScript"],
     category: "Mobile App",
     demoUrl: "#",
@@ -67,8 +64,8 @@ const projects = [
       "Property listing and management platform with advanced search filters and virtual tours. Includes CRM for agents and analytics for property insights.",
     fullDescription:
       "A modern real estate platform connecting buyers, sellers, and agents. Features include advanced property search with filters, virtual property tours, agent CRM system, lead management, property analytics, and mortgage calculator integration.",
-    image: "/real-estate-website.png",
-    images: ["/real-estate-website.png", "/property-listing.jpg", "/agent-dashboard.jpg"],
+    image: "/project/homeRealstate.png",
+    images: ["/project/homeRealstate.png", "/project/listingRealstate.png", "/project/detailRealstate.png"],
     technologies: ["Next.js", "PostgreSQL", "Tailwind CSS"],
     category: "Web Development",
     demoUrl: "#",
@@ -142,8 +139,8 @@ const projects = [
       "Mobile fitness application with workout tracking, nutrition planning, and progress analytics. Includes wearable device integration.",
     fullDescription:
       "A comprehensive fitness tracking solution for health-conscious users. Features include workout logging, personalized training plans, nutrition tracking, wearable device integration, social challenges, progress analytics, and expert guidance.",
-    image: "/fitness-tracking-app.png",
-    images: ["/fitness-tracking-app.png", "/workout-tracker.jpg", "/fitness-analytics.jpg"],
+    image: "/project/fitnessHomeGym.png",
+    images: ["/project/fitnessHomeGym.png", "/project/workoutTrackerGym.png", "/project/nutritionTrackerGym.png", "/project/fitnessAnalyticsGym.png"],
     technologies: ["Flutter", "Firebase", "Dart"],
     category: "Mobile App",
     demoUrl: "#",
@@ -334,7 +331,7 @@ function ProjectModal({ project, onClose }: { project: (typeof projects)[0] | nu
           )}
 
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-4 border-t border-border">
+          {/* <div className="flex gap-3 pt-4 border-t border-border">
             <Button className="flex-1 bg-accent hover:bg-accent/90">
               <ExternalLink className="h-4 w-4 mr-2" />
               View Demo
@@ -343,7 +340,7 @@ function ProjectModal({ project, onClose }: { project: (typeof projects)[0] | nu
               <Github className="h-4 w-4 mr-2" />
               View Code
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
