@@ -197,7 +197,7 @@ function ProjectModal({ project, onClose }: { project: (typeof projects)[0] | nu
               <img
                 src={project.images[currentImageIndex] || project.image}
                 alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
 
               {/* Carousel Controls */}
@@ -250,7 +250,7 @@ function ProjectModal({ project, onClose }: { project: (typeof projects)[0] | nu
                     <img
                       src={img || "/placeholder.svg"}
                       alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </button>
                 ))}
@@ -395,7 +395,7 @@ export default function ProjectsPage() {
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={project.title}
-                          className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
+                          className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105 rounded-lg"
                         />
                         <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                           <Button
