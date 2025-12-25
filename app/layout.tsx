@@ -95,25 +95,10 @@ export default function RootLayout({
         {/* ✅ Glowing favicon */}
         <Favicon />
 
-        {/* ✅ Header */}
-        <header className="w-full border-b border-gray-800 p-4 flex items-center justify-center gap-3 bg-black/40 backdrop-blur-md sticky top-0 z-50 shadow-lg">
-          <div className="p-2 rounded-lg bg-primary/20 animate-pulse-glow">
-            <Code className="h-6 w-6 text-primary" />
-          </div>
-          <h1 className="text-lg sm:text-xl font-semibold tracking-wide">
-            Code Fusion Group | Professional IT Team
-          </h1>
-        </header>
-
         {/* ✅ Page Content */}
         <main className="grow">
           <Suspense fallback={null}>{children}</Suspense>
         </main>
-
-        {/* ✅ Footer */}
-        <footer className="w-full border-t border-gray-800 text-center py-4 text-sm text-gray-400 bg-black/40 backdrop-blur-md">
-          © {new Date().getFullYear()} Code Fusion Group — All Rights Reserved.
-        </footer>
 
         {/* ✅ Analytics (Vercel) */}
         <Analytics />

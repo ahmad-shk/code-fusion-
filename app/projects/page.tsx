@@ -3,480 +3,256 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ExternalLink, Github, Users, Calendar, Zap, X, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState } from "react"
-import Link from "next/link"
+import { 
+  Users, 
+  Calendar, 
+  Zap, 
+  X, 
+  Monitor, 
+  ChevronRight, 
+  ChevronLeft, 
+  Image as ImageIcon 
+} from "lucide-react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { projects } from "@/data/dummyData"
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description:
-      "Modern online shopping platform with payment integration, inventory management, and admin dashboard. This comprehensive solution includes real-time product updates, customer reviews, and advanced analytics.",
-    fullDescription:
-      "A fully-featured e-commerce platform built for scalability and user experience. Features include secure payment processing through Stripe, multi-vendor support, inventory tracking, customer reviews, order management, and a powerful admin dashboard for managing products and sales.",
-    image: "/project/homeEcom.png",
-    images: ["/project/homeEcom.png", "/project/productEcom.png", "/project/cartEcom.png", "/project/adminDashBoardEcom.png"],
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    category: "Web Development",
-    duration: "2 months",
-    team: "5 developers",
-    features: [
-      "Secure Payment Gateway Integration",
-      "Real-time Inventory Management",
-      "Advanced Product Search & Filters",
-      "Customer Reviews & Ratings",
-      "Admin Dashboard with Analytics",
-      "Order Tracking System",
-    ],
-  },
-  {
-    id: 2,
-    title: "Healthcare Management App",
-    description:
-      "Comprehensive healthcare management system for clinics with patient records and appointment scheduling. Integrated with telemedicine capabilities and prescription management.",
-    fullDescription:
-      "A robust healthcare solution designed for medical professionals and patients. Features include electronic health records (EHR), appointment scheduling, prescription management, telemedicine consultation, patient history tracking, and HIPAA-compliant data security.",
-    image: "/project/dashboardHealth.png",
-    images: ["/project/dashboardHealth.png", "/project/patientRecordHealth.png", "/project/appointmentSchedulerHealth.png", "/project/telemedicineAppHealth.png"],
-    technologies: ["React Native", "Firebase", "TypeScript"],
-    category: "Mobile App",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "5 months",
-    team: "5 developers",
-    relatedProjects: [6],
-    features: [
-      "Electronic Health Records (EHR)",
-      "Appointment Scheduling System",
-      "Prescription Management",
-      "Telemedicine Consultations",
-      "Patient History Tracking",
-      "HIPAA-Compliant Security",
-    ],
-  },
-  {
-    id: 3,
-    title: "Real Estate Portal",
-    description:
-      "Property listing and management platform with advanced search filters and virtual tours. Includes CRM for agents and analytics for property insights.",
-    fullDescription:
-      "A modern real estate platform connecting buyers, sellers, and agents. Features include advanced property search with filters, virtual property tours, agent CRM system, lead management, property analytics, and mortgage calculator integration.",
-    image: "/project/homeRealstate.png",
-    images: ["/project/homeRealstate.png", "/project/listingRealstate.png", "/project/detailRealstate.png"],
-    technologies: ["Next.js", "PostgreSQL", "Tailwind CSS"],
-    category: "Web Development",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "4 months",
-    team: "5 developers",
-    relatedProjects: [1],
-    features: [
-      "Advanced Property Search & Filters",
-      "Virtual Property Tours",
-      "Agent CRM System",
-      "Lead Management",
-      "Property Analytics Dashboard",
-      "Mortgage Calculator Integration",
-    ],
-  },
-  {
-    id: 4,
-    title: "Restaurant Management System",
-    description:
-      "Complete restaurant management solution with POS, inventory tracking, and customer management. Streamlines operations from order taking to delivery.",
-    fullDescription:
-      "An all-in-one restaurant management platform including point-of-sale (POS) system, kitchen display system (KDS), inventory management, employee scheduling, customer loyalty program, and delivery integration.",
-    image: "/images/7b9feca38c-a1c3-4d1c-bb83-26a3a54aadc8-7d.png",
-    images: ["/images/7b9feca38c-a1c3-4d1c-bb83-26a3a54aadc8-7d.png", "/pos-system.jpg", "/kitchen-display.jpg"],
-    technologies: ["Vue.js", "Express.js", "MySQL"],
-    category: "Custom Solution",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "5 months",
-    team: "5 developers",
-    relatedProjects: [],
-    features: [
-      "Point of Sale (POS) System",
-      "Kitchen Display System (KDS)",
-      "Inventory Management",
-      "Employee Scheduling",
-      "Customer Loyalty Program",
-      "Delivery Integration",
-    ],
-  },
-  {
-    id: 5,
-    title: "Learning Management System",
-    description:
-      "Educational platform with course management, student tracking, and interactive learning tools. Supports video lectures, quizzes, and progress tracking.",
-    fullDescription:
-      "A comprehensive LMS designed for educators and institutions. Features include course creation and management, video streaming, interactive quizzes, student progress tracking, certification generation, discussion forums, and instructor analytics.",
-    image: "/lms-dashboard.png",
-    images: ["/lms-dashboard.png", "/course-management.jpg", "/student-dashboard.jpg"],
-    technologies: ["React", "Django", "PostgreSQL"],
-    category: "Web Development",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "7 months",
-    team: "5 developers",
-    relatedProjects: [1],
-    features: [
-      "Course Creation & Management",
-      "Video Streaming Capabilities",
-      "Interactive Quizzes & Assessments",
-      "Student Progress Tracking",
-      "Certification Generation",
-      "Discussion Forums",
-    ],
-  },
-  {
-    id: 6,
-    title: "Fitness Tracking App",
-    description:
-      "Mobile fitness application with workout tracking, nutrition planning, and progress analytics. Includes wearable device integration.",
-    fullDescription:
-      "A comprehensive fitness tracking solution for health-conscious users. Features include workout logging, personalized training plans, nutrition tracking, wearable device integration, social challenges, progress analytics, and expert guidance.",
-    image: "/project/fitnessHomeGym.png",
-    images: ["/project/fitnessHomeGym.png", "/project/workoutTrackerGym.png", "/project/nutritionTrackerGym.png", "/project/fitnessAnalyticsGym.png"],
-    technologies: ["Flutter", "Firebase", "Dart"],
-    category: "Mobile App",
-    demoUrl: "#",
-    githubUrl: "#",
-    duration: "4 months",
-    team: "5 developers",
-    relatedProjects: [2],
-    features: [
-      "Workout Logging & Tracking",
-      "Personalized Training Plans",
-      "Nutrition Tracking",
-      "Wearable Device Integration",
-      "Social Challenges",
-      "Progress Analytics & Reports",
-    ],
-  },
-]
+// --- DATA ARRAY ---
+// Note: Maine 'image' ko 'images' array mein convert kar diya hai gallery ke liye
 
+
+// --- MODAL COMPONENT (WITH GALLERY) ---
+// --- 2. PROJECT MODAL COMPONENT ---
 function ProjectModal({ project, onClose }: { project: (typeof projects)[0] | null; onClose: () => void }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [activeImage, setActiveImage] = useState(0);
+
+  // Background scroll lock logic
+  useEffect(() => {
+    if (project) {
+        setActiveImage(0);
+        document.documentElement.style.overflow = 'hidden';
+    } else {
+        document.documentElement.style.overflow = 'unset';
+    }
+    return () => { document.documentElement.style.overflow = 'unset'; }
+  }, [project]);
 
   if (!project) return null
 
-  const relatedProjects = projects.filter((p) => project.relatedProjects?.includes(p.id))
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveImage((prev) => (prev + 1) % project.images.length);
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveImage((prev) => (prev - 1 + project.images.length) % project.images.length);
+  };
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <div
-        className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        <style>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+    <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-[100] p-0 sm:p-4 backdrop-blur-xl transition-all duration-300">
+      {/* Global CSS for hiding scrollbars */}
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
 
+      <div className="bg-card w-full max-w-5xl max-h-screen sm:max-h-[92vh] overflow-y-auto sm:rounded-3xl border border-white/10 shadow-2xl relative no-scrollbar">
+        
         {/* Header */}
-        <div className="sticky top-0 flex items-center justify-between p-4 sm:p-6 bg-card border-b border-border">
-          <h2 className="text-2xl font-bold text-foreground">{project.title}</h2>
-          <button onClick={onClose} className="p-2 hover:bg-muted rounded-lg transition-colors">
-            <X className="h-6 w-6 text-foreground" />
+        <div className="sticky top-0 z-50 flex items-center justify-between p-6 bg-card/80 backdrop-blur-xl border-b border-white/5">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            <Monitor className="text-primary h-6 w-6" /> {project.title}
+          </h2>
+          <button 
+            onClick={onClose} 
+            className="p-2 hover:bg-white/10 rounded-full transition-all bg-muted/50"
+          >
+            <X className="h-6 w-6" />
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-4 sm:p-6 space-y-6">
-          {/* Image Carousel */}
-          <div className="space-y-4">
-            <div className="relative rounded-lg overflow-hidden bg-muted h-96">
-              <img
-                src={project.images[currentImageIndex] || project.image}
-                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                className="w-full h-full object-contain"
+        <div className="p-6 sm:p-10 space-y-10">
+          
+          {/* Gallery Section */}
+          <div className="space-y-6">
+            <div className="group relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/5 shadow-2xl">
+              <img 
+                src={project.images[activeImage]} 
+                className="w-full h-full object-cover transition-all duration-500"
+                alt="Main"
               />
+              
+              {/* Navigation Arrows */}
+              <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button onClick={handlePrev} className="p-3 rounded-full bg-black/60 backdrop-blur-md border border-white/10 hover:bg-primary transition-all">
+                  <ChevronLeft className="h-6 w-6 text-white" />
+                </button>
+                <button onClick={handleNext} className="p-3 rounded-full bg-black/60 backdrop-blur-md border border-white/10 hover:bg-primary transition-all">
+                  <ChevronRight className="h-6 w-6 text-white" />
+                </button>
+              </div>
 
-              {/* Carousel Controls */}
-              {project.images.length > 1 && (
-                <>
-                  <button
-                    onClick={() =>
-                      setCurrentImageIndex(currentImageIndex === 0 ? project.images.length - 1 : currentImageIndex - 1)
-                    }
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full transition-colors"
-                  >
-                    <ChevronLeft className="h-6 w-6 text-white" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setCurrentImageIndex(currentImageIndex === project.images.length - 1 ? 0 : currentImageIndex + 1)
-                    }
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full transition-colors"
-                  >
-                    <ChevronRight className="h-6 w-6 text-white" />
-                  </button>
+              <div className="absolute bottom-4 right-4">
+                <Badge className="bg-black/60 backdrop-blur-md border-white/10 text-white">
+                  {activeImage + 1} / {project.images.length}
+                </Badge>
+              </div>
+            </div>
 
-                  {/* Image Indicators */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                    {project.images.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`h-2 rounded-full transition-all ${
-                          index === currentImageIndex ? "bg-white w-8" : "bg-white/50 w-2 hover:bg-white/80"
-                        }`}
-                      />
+            {/* Thumbnails Scroller */}
+            <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+              {project.images.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveImage(index)}
+                  className={`relative flex-shrink-0 w-32 sm:w-44 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                    activeImage === index 
+                    ? "border-primary ring-4 ring-primary/20 scale-95" 
+                    : "border-transparent opacity-40 hover:opacity-100"
+                  }`}
+                >
+                  <img src={img} className="w-full h-full object-cover" alt="thumb" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Details Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2 space-y-10">
+              <section>
+                <h3 className="text-xl font-bold mb-4 text-primary">About the Project</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg font-light">{project.fullDescription}</p>
+              </section>
+
+              <section>
+                <h3 className="text-xl font-bold mb-6 text-primary">Core Capabilities</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.features.map(f => (
+                    <div key={f} className="flex items-center gap-4 bg-muted/20 p-5 rounded-2xl border border-white/5 hover:bg-muted/40 transition-all">
+                      <Zap className="h-5 w-5 text-yellow-500" />
+                      <span className="font-semibold">{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            {/* Sidebar Metadata */}
+            <div className="space-y-6">
+              <div className="bg-muted/30 p-8 rounded-3xl border border-white/5 space-y-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground flex items-center gap-2 text-sm"><Calendar className="h-4 w-4"/> Duration</span>
+                  <span className="font-bold">{project.duration}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground flex items-center gap-2 text-sm"><Users className="h-4 w-4"/> Team Size</span>
+                  <span className="font-bold">{project.team}</span>
+                </div>
+                <div className="pt-6 border-t border-white/5">
+                  <p className="text-xs font-black mb-4 uppercase text-primary tracking-widest text-center">Stack</p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {project.technologies.map(t => (
+                      <Badge key={t} variant="secondary" className="px-3 py-1 bg-white/5 border-none hover:bg-primary/20">{t}</Badge>
                     ))}
                   </div>
-                </>
-              )}
-            </div>
-
-            {/* Thumbnail Scroller */}
-            {project.images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {project.images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 h-20 w-20 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === currentImageIndex ? "border-accent" : "border-border hover:border-accent/50"
-                    }`}
-                  >
-                    <img
-                      src={img || "/placeholder.svg"}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-contain"
-                    />
-                  </button>
-                ))}
+                </div>
               </div>
-            )}
-          </div>
-
-          {/* Project Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-muted rounded-lg p-4">
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Calendar className="h-4 w-4" />
-                <span className="text-sm">Duration</span>
-              </div>
-              <p className="font-semibold text-foreground">{project.duration}</p>
-            </div>
-            <div className="bg-muted rounded-lg p-4">
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Users className="h-4 w-4" />
-                <span className="text-sm">Team Size</span>
-              </div>
-              <p className="font-semibold text-foreground">{project.team}</p>
-            </div>
-            <div className="bg-muted rounded-lg p-4">
-              <Badge className="bg-accent/20 text-accent">{project.category}</Badge>
+              <Button className="w-full h-16 text-xl font-bold rounded-2xl group transition-all">
+                Live Preview 
+                <ChevronRight className="ml-2 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+              </Button>
             </div>
           </div>
-
-          {/* Description */}
-          <div>
-            <h3 className="text-lg font-bold text-foreground mb-3">Overview</h3>
-            <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
-          </div>
-
-          {/* Features */}
-          <div>
-            <h3 className="text-lg font-bold text-foreground mb-3">Key Features</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {project.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-muted-foreground">
-                  <Zap className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Technologies */}
-          <div>
-            <h3 className="text-lg font-bold text-foreground mb-3">Technologies Used</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <Badge key={tech} variant="outline" className="border-border">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Related Projects */}
-          {relatedProjects.length > 0 && (
-            <div>
-              <h3 className="text-lg font-bold text-foreground mb-3">Related Projects</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {relatedProjects.map((relatedProject) => (
-                  <div
-                    key={relatedProject.id}
-                    className="p-3 bg-muted rounded-lg border border-border hover:border-accent transition-colors cursor-pointer"
-                  >
-                    <p className="font-semibold text-foreground">{relatedProject.title}</p>
-                    <Badge variant="outline" className="mt-2 text-xs">
-                      {relatedProject.category}
-                    </Badge>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          {/* <div className="flex gap-3 pt-4 border-t border-border">
-            <Button className="flex-1 bg-accent hover:bg-accent/90">
-              <ExternalLink className="h-4 w-4 mr-2" />
-              View Demo
-            </Button>
-            <Button variant="outline" className="flex-1 bg-transparent">
-              <Github className="h-4 w-4 mr-2" />
-              View Code
-            </Button>
-          </div> */}
         </div>
       </div>
     </div>
   )
 }
 
+// --- 3. MAIN PROJECTS PAGE ---
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null)
 
-  const groupedProjects = {
-    "Web Development": projects.filter((p) => p.category === "Web Development"),
-    "Mobile App": projects.filter((p) => p.category === "Mobile App"),
-    "Custom Solution": projects.filter((p) => p.category === "Custom Solution"),
-  }
+  const groupedProjects = useMemo(() => {
+    return projects.reduce((acc, p) => {
+      if (!acc[p.category]) acc[p.category] = [];
+      acc[p.category].push(p);
+      return acc;
+    }, {} as Record<string, typeof projects>);
+  }, []);
 
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
-
-      {/* Page Header */}
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/10 to-transparent">
-        <div className="container mx-auto">
-          <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-6">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 text-balance">All Our Projects</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl text-pretty">
-            Explore our complete portfolio of successful projects. Each project represents our commitment to delivering
-            innovative, scalable, and user-focused solutions.
+      
+      <div className="pt-32 pb-20 container mx-auto px-6">
+        {/* Header Section */}
+        <div className="max-w-4xl mb-24">
+          <h1 className="text-7xl md:text-8xl font-black mb-8 tracking-tighter bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent italic uppercase">
+            Work.
+          </h1>
+          <p className="text-2xl text-muted-foreground border-l-2 border-primary pl-8 py-3 max-w-2xl leading-relaxed font-light">
+            A showcase of digital products crafted with a focus on performance, 
+            scalability, and exceptional user experience.
           </p>
         </div>
-      </div>
 
-      {/* Projects Grid by Category */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto space-y-16">
-          {Object.entries(groupedProjects).map(([category, categoryProjects]) => (
-            <div key={category}>
-              {/* Category Header */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-2">{category}</h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-600 rounded-full"></div>
+        {/* Categories and Cards */}
+        <div className="space-y-48">
+          {Object.entries(groupedProjects).map(([category, items]) => (
+            <div key={category} className="space-y-16">
+              <div className="flex items-end justify-between border-b border-white/5 pb-8">
+                <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase">{category}</h2>
+                <Badge variant="outline" className="text-primary font-mono px-4 py-1 border-primary/30">
+                  {items.length} CASE STUDIES
+                </Badge>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {categoryProjects.map((project) => (
-                  <button key={project.id} onClick={() => setSelectedProject(project)} className="text-left">
-                    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 bg-card border-border group flex flex-col h-full cursor-pointer">
-                      {/* Project Image */}
-                      <div className="relative overflow-hidden rounded-lg m-4 flex-shrink-0">
-                        <img
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.title}
-                          className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105 rounded-lg"
-                        />
-                        <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
-                          <Button
-                            size="lg"
-                            variant="secondary"
-                            className="bg-background text-foreground hover:bg-muted"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setSelectedProject(project)
-                            }}
-                          >
-                            View Details
-                          </Button>
-                        </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+                {items.map((project) => (
+                  <div 
+                    key={project.id} 
+                    onClick={() => setSelectedProject(project)}
+                    className="group cursor-pointer"
+                  >
+                    <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-muted mb-8 transition-all duration-700 shadow-xl group-hover:shadow-primary/10 group-hover:-translate-y-2">
+                      <img 
+                        src={project.images[0]} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                      />
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                         <div className="h-20 w-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl scale-50 group-hover:scale-100 transition-all duration-500 font-bold">
+                           VIEW
+                         </div>
                       </div>
-
-                      {/* Project Content */}
-                      <div className="flex flex-col flex-grow p-4 sm:p-6">
-                        <div className="flex items-center gap-3 mb-3 flex-wrap">
-                          <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
-                          <Badge className="bg-accent/20 text-accent text-xs">{project.category}</Badge>
-                        </div>
-
-                        <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{project.description}</p>
-
-                        {/* Technologies */}
-                        <div className="mb-4">
-                          <h4 className="font-semibold text-foreground mb-2 text-sm">Technologies:</h4>
-                          <div className="flex flex-wrap gap-1">
-                            {project.technologies.map((tech) => (
-                              <Badge
-                                key={tech}
-                                variant="outline"
-                                className="border-border text-muted-foreground text-xs"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Action Button */}
-                        <Button
-                          className="w-full mt-auto bg-accent hover:bg-accent/90 text-foreground"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setSelectedProject(project)
-                          }}
-                        >
-                          View Full Details
-                        </Button>
+                    </div>
+                    <div className="space-y-4 px-2">
+                      <h3 className="text-3xl font-bold tracking-tight group-hover:text-primary transition-colors">{project.title}</h3>
+                      <p className="text-muted-foreground line-clamp-2 text-lg leading-relaxed">{project.description}</p>
+                      <div className="flex gap-4 pt-2">
+                        {project.technologies.slice(0, 3).map(t => (
+                           <span key={t} className="text-xs font-black uppercase tracking-widest text-primary/60">{t}</span>
+                        ))}
                       </div>
-                    </Card>
-                  </button>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 border-t border-border">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Ready to Build Something Amazing?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss your project requirements and create a solution tailored to your needs.
-          </p>
-          <Link href="/contact">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-600 hover:from-cyan-600 hover:via-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
-            >
-              Start Your Project
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-
+      {/* Full-Screen Project Details */}
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
+      
       <Footer />
     </main>
   )

@@ -78,7 +78,7 @@ export function HeroSection() {
           </div>
 
           {/* Services Icons */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="flex flex-col items-center p-6 bg-card/50 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 border border-cyan-500/20">
               <div className="w-12 h-12 bg-gradient-to-br from-cyan-400/20 to-cyan-600/20 rounded-lg flex items-center justify-center mb-4 shadow-lg">
                 <Globe className="h-6 w-6 text-cyan-400" />
@@ -106,7 +106,7 @@ export function HeroSection() {
                 Tailored software solutions for your business needs
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
